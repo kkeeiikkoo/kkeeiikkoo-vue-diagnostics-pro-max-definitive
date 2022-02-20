@@ -482,9 +482,9 @@
 
                     <div class="seminar__button-warp">
                         <!-- <button class="seminar__button">関連記事</button> -->
-                        <button v-if="this.score > 70" class="seminar__button"><a href="https://www.nlpjapan.co.jp/basic-master.html">マスターセミナー</a></button>
-                        <button v-else-if="this.score > 50" class="seminar__button"><a href="https://www.nlpjapan.co.jp/basic-pra.html">プラセミナー</a></button>
-                        <button v-else class="seminar__button"><a href="https://www.nlpjapan.co.jp/basic-hyper.html">ハイパーセミナー</a></button>                    
+                        <a v-if="this.score > 70" href="https://www.nlpjapan.co.jp/basic-master.html"><button class="seminar__button">マスターセミナー</button></a>
+                        <a v-else-if="this.score > 50" href="https://www.nlpjapan.co.jp/basic-pra.html"><button class="seminar__button">プラセミナー</button></a>
+                        <a v-else href="https://www.nlpjapan.co.jp/basic-hyper.html"><button class="seminar__button">ハイパーセミナー</button></a>                    
                     </div>
 
                 </div>
