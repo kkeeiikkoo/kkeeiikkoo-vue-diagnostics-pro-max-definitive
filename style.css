@@ -336,8 +336,8 @@ footer {
 
 @media screen and (max-width: 768px) {
   .title_background {
-    width: 25rem;
-    height: 25rem;
+    width: 23rem;
+    height: 23rem;
   }
   .title_background button {
     padding: 0.5rem;
@@ -348,13 +348,13 @@ footer {
 
 @media screen and (max-width: 480px) {
   .title_background {
-    width: 22rem;
-    height: 22rem;
+    width: 20rem;
+    height: 20rem;
     margin: auto;
   }
 }
 
-@media screen and (max-width: 480px) and (min-height: 750px) {
+@media screen and (max-width: 480px) and (min-height: 720px) {
   .title_background {
     margin-top: 4rem;
   }
@@ -810,7 +810,7 @@ footer {
 
 .job-type-about__title,
 .job-type-about__content {
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .next-button {
