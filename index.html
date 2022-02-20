@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="noindex,nofollow">
+    <title>コミュニケーション能力診断 基礎編</title>
+
+    <!-- OGP -->
+    <meta property="og:title" content="コミュニケーション能力診断 基礎編">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="１分で簡単！コミュニケーション能力診断！">
+
+    <link href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
+    <link rel="stylesheet" href="style.css">
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-longpress@1.0.2/dist/vue-longpress.min.js"></script>
+    <!-- チート用 -->
+
+</head>
+
+<body>
+
+    <div id="app" class="container" :class="{'container--bg':startTitle||firstPage}">
+
+        <header>
+            <a href="index.html"><img class="logo" src="images/logo.png" alt="home"></a>
+            <!-- <div v-if="start">
+                <p :class="{red:basic, red_sp:basic}" @click="navi_basicbtn" v-show="this.basic">新卒社会人</p>
+                <p :class="{red:begin, red_sp:begin}" @click="navi_beginbtn" v-show="this.begin">一般社会人</p>
+                <p :class="{red:leader, red_sp:leader}" @click="navi_leaderbtn" v-show="this.leader">リーダー役</p>
+            </div> -->
+            <div v-if="questions.length && questions_begin.length && questions_leader.length">
+                <div v-if="start">
+                    <p class="header__level" v-show="this.basic">新卒社会人</p>
+                    <p class="header__level" v-show="this.begin">一般社会人</p>
+                    <p class="header__level" v-show="this.leader">リーダー役</p>
+                </div>
+            </div>
+            <!-- ゲームスタート後に残す（掲示用） -->
+        </header>
+
+
+
+        <div class="title_background" v-show="startTitle" v-if="startTitle">
+            <button @click="toHowToChoose">Start!</button>
+            <p @click="toFirstPage"><u>NLPとは?</u></p>
+        </div>
+
+
+        <div class="section" v-if="firstPage">
+            <div class="section__title-warp">
+                <h2 class="section__title">NLPとは</h2>
+                <h2 class="section__sub-title">世界中に歓迎されているNLPの秘密は？</h2>
+            </div>
+            <div class="section__content-warp">
+                <div class="first-page">
+
+                    <div class="first-page__text mb-2">世界中のセラピスト権威は、<br class="spdn"><span class="bold">「どのように人にアプローチし、どのように相手の変化を作り出していったのか」</span><br class="spdn">を研究・分析して、NLPを作りました。</div>
+
+                    <div class="first-page__text mb-1 first-page__text--large">世の中は人の「心理」で動いていると言われます。</div>
+
+                    <div class="first-page__text mb-2"><u>心理のプログラミング技術はNLP手法そのものです。</u><br class="spdn">自分の心理を理解し、心の制限などの思い込みを書き換え、潜在な力を引き出します。<br class="spdn">相手の心理を観察し、ビジネス上に相手の立場で話を進んで、協力関係を固めます。</div>
+                    <div class="first-page__text mb-2">生活、仕事、人間関係、自己啓発など<br class="spdn">様々な領域で、自分の人生をアップデートできます。<br class="spdn"><a href="https://www.nlpjapan.co.jp/about-nlp.html">ここで</a>より詳しくNLPを理解しましょう。</div>
+
+
+                    <div class="next-page-button mb-2" @click="toFirstPage">戻る</div>
+                </div>
+            </div>
+        </div>
+        <!-- 最初のページ -->
+
+
+        <div class="section" v-if="howToChoose">
+            <div class="section__title-warp">
+                <h2 class="section__title">心理テストとは</h2>
+                <h2 class="section__sub-title">WEB診断で相性がいいNLPの学び方を<br class="pcdn">探しましょう！</h2>
+            </div>
+            <div class="section__content-warp">
+                <div class="how-to">
+                    <div class="how-to__text mb-1"><u>「NLPコースがたくさんあって、どう学んでいいのかわからない」</u></div>
+                    <div class="how-to__text2 mb-4">自分にとってNLPの最初のコースは何を選ぶべきなのか？</div>
+                    <div class="how-to__text3 mb-3">
+
+                        <div class="how-to__line how-to__line1 mb-1">
+                            <span>ハ</span><span>イ</span><span>パ</span><span>ー</span><span>コ</span><span>ミ</span><span>ュ</span><span>ニ</span><span>ケ</span><span>ー</span><span>シ</span><span>ョ</span><span>ン</span><span>セ</span><span>ミ</span><span>ナ</span><span
+                                class="spanspace">ー</span><span>ハ</span><span>イ</span><span>パ</span><span>ー</span><span>コ</span><span>ミ</span><span>ュ</span><span>ニ</span><span>ケ</span><span>ー</span><span>シ</span><span>ョ</span><span>ン</span><span>セ</span><span>ミ</span><span>ナ</span><span
+                                class="spanspace">ー</span><span>ハ</span><span>イ</span><span>パ</span><span>ー</span><span>コ</span><span>ミ</span><span>ュ</span><span>ニ</span><span>ケ</span><span>ー</span><span>シ</span><span>ョ</span><span>ン</span><span>セ</span><span>ミ</span><span>ナ</span><span
+                                class="spanspace">ー</span><span>ハ</span><span>イ</span><span>パ</span><span>ー</span><span>コ</span><span>ミ</span><span>ュ</span><span>ニ</span><span>ケ</span><span>ー</span><span>シ</span><span>ョ</span><span>ン</span><span>セ</span><span>ミ</span><span>ナ</span><span
+                                class="spanspace">ー</span>
+                        </div>
+
+                        <div class="how-to__line how-to__line2 mb-1">
+                            <span>プ</span><span>ラ</span><span>ク</span><span>テ</span><span>ィ</span><span>シ</span><span>ョ</span><span>ナ</span><span class="spanspace">ー</span><span>プ</span><span>ラ</span><span>ク</span><span>テ</span><span>ィ</span><span>シ</span><span>ョ</span><span>ナ</span><span
+                                class="spanspace">ー</span><span>プ</span><span>ラ</span><span>ク</span><span>テ</span><span>ィ</span><span>シ</span><span>ョ</span><span>ナ</span><span
+                                class="spanspace">ー</span><span>プ</span><span>ラ</span><span>ク</span><span>テ</span><span>ィ</span><span>シ</span><span>ョ</span><span>ナ</span><span
+                                class="spanspace">ー</span><span>プ</span><span>ラ</span><span>ク</span><span>テ</span><span>ィ</span><span>シ</span><span>ョ</span><span>ナ</span><span class="spanspace">ー</span>
+                        </div>
+
+                        <div class="how-to__line how-to__line3 mb-1">
+                            <span>マ</span><span>ス</span><span>タ</span><span>ー</span><span>プ</span><span>ラ</span><span>ク</span><span>テ</span><span>ィ</span><span>シ</span><span>ョ</span><span>ナ</span><span
+                                class="spanspace">ー</span><span>マ</span><span>ス</span><span>タ</span><span>ー</span><span>プ</span><span>ラ</span><span>ク</span><span>テ</span><span>ィ</span><span>シ</span><span>ョ</span><span>ナ</span><span
+                                class="spanspace">ー</span><span>マ</span><span>ス</span><span>タ</span><span>ー</span><span>プ</span><span>ラ</span><span>ク</span><span>テ</span><span>ィ</span><span>シ</span><span>ョ</span><span>ナ</span><span
+                                class="spanspace">ー</span><span>マ</span><span>ス</span><span>タ</span><span>ー</span><span>プ</span><span>ラ</span><span>ク</span><span>テ</span><span>ィ</span><span>シ</span><span>ョ</span><span>ナ</span><span class="spanspace">ー</span>
+                        </div>
+
+                        <div class="how-to__line how-to__line4 mb-1">
+                            <span>プ</span><span>ロ</span><span>フ</span><span>ェ</span><span>ッ</span><span>シ</span><span>ョ</span><span>ナ</span><span>ル</span><span>コ</span><span>ー</span><span
+                                class="spanspace">チ</span><span>プ</span><span>ロ</span><span>フ</span><span>ェ</span><span>ッ</span><span>シ</span><span>ョ</span><span>ナ</span><span>ル</span><span>コ</span><span>ー</span><span
+                                class="spanspace">チ</span><span>プ</span><span>ロ</span><span>フ</span><span>ェ</span><span>ッ</span><span>シ</span><span>ョ</span><span>ナ</span><span>ル</span><span>コ</span><span>ー</span><span
+                                class="spanspace">チ</span><span>プ</span><span>ロ</span><span>フ</span><span>ェ</span><span>ッ</span><span>シ</span><span>ョ</span><span>ナ</span><span>ル</span><span>コ</span><span>ー</span><span class="spanspace">チ</span>
+                        </div>
+
+                    </div>
+                    <div class="how-to__note mb-3">NLP心理テストで、あなたの状況とコミュニケーション能力をあわせて、一番適切なセミナーを提案させていただきます。</div>
+
+                    <div class="next-page-button mb-2" @click="toYourType">次へ</div>
+                </div>
+            </div>
+        </div>
+        <!-- NLPの選び方 -->
+
+
+        <div class="section" v-if="yourType">
+            <div class="section__title-warp">
+                <h2 class="section__title">あなたの状況を教えて下さい</h2>
+                <h2 class="section__sub-title">あなたの状況により、<br class="pcdn">相性が良いNLP診断をできます</h2>
+            </div>
+            <div class="section__content-warp">
+                <div class="job-type">
+                    <div class="job-type__content" :class="{'job-type__content--active':basic}" @click="navi_basicbtn">
+                        <img class="job-type__img job-type__img--basic" src="images/student.png" alt="">
+                        <p>新卒社会人</p>
+                    </div>
+                    <!-- 基礎編 -->
+
+                    <div class="job-type__content" :class="{'job-type__content--active':begin}" @click="navi_beginbtn">
+                        <img class="job-type__img job-type__img--begin" src="images/business.png" alt="">
+                        <p>一般社会人</p>
+                    </div>
+                    <!-- 初級編 -->
+
+                    <div class="job-type__content" :class="{'job-type__content--active':leader}" @click="navi_leaderbtn">
+                        <img class="job-type__img job-type__img--leader" src="images/leader.png" alt="">
+                        <p>リーダー役</p>
+                    </div>
+                    <!-- 上級編 -->
+                </div>
+
+                <div class="job-type-about mb-2">
+                    <div class="job-type-about__block job-type-about__block--basic mb-3" v-if="basic">
+                        <div class="job-type-about__title mb-half">新卒社会人</div>
+                        <div class="job-type-about__content">社会人になってから三年以内、そして役職や創業者ではない方に該当します。仕事を少しずつ覚えていて、会社にも貢献していますが、人生の課題をまだ探索している段階です。</div>
+                    </div>
+                    <div class="job-type-about__block job-type-about__block--begin mb-3" v-if="begin">
+                        <div class="job-type-about__title mb-half">一般社会人</div>
+                        <div class="job-type-about__content">社会人になってから三年以上、そして役職や創業者ではない方に該当します。人生の方針がある程度固まっていますが、クライアント、家族、上司、同僚とのコミュニケーションに頑張っている段階です。</div>
+                    </div>
+                    <div class="job-type-about__block job-type-about__block--leader mb-3" v-if="leader">
+                        <div class="job-type-about__title mb-half">リーダー役</div>
+                        <div class="job-type-about__content">役職付き、もしくは創業者に該当します。自分の課題ははっきり見えて、そこで、上司とのコミュニケーション、チームメンバーの結束、仕事の課題に対する責任などのことに頑張っている段階です。</div>
+                    </div>
+                </div>
+
+                <div class="next-button mb-2" @click="gamestart">診断を始める</div>
+
+            </div>
+        </div>
+        <!-- レベルを選ぶ -->
+
+
+
+        <div class="question" v-if="start && questions.length && questions_begin.length && questions_leader.length" v-show="!this.cheat">
+
+            <div v-if="basic" class="question__title">
+                <h2>{{questions[0].name}}</h2>
+            </div>
+            <!-- 質問 -->
+
+            <div v-if="begin" class="question__title">
+                <h2>{{questions_begin[0].name}}</h2>
+            </div>
+            <!-- 質問 -->
+
+            <div v-if="leader" class="question__title">
+                <h2>{{questions_leader[0].name}}</h2>
+            </div>
+            <!-- 質問 -->
+
+
+
+
+            <div v-if="basic" class="question__content">
+                <button class="question__content--btn btna" @click="btnclick();btnValueA()">はい</button>
+                <button class="question__content--btn btnb" @click="btnclick();btnValueB()">どちらでもない</button>
+                <button class="question__content--btn btnc" @click="btnclick();btnValueC()">いいえ</button>
+            </div>
+            <!-- 選択肢 基礎編 -->
+
+            <div v-if="begin" class="question__content">
+                <button class="question__content--btn btna" @click="btnclick();btnValue_beginA()">はい</button>
+                <button class="question__content--btn btnb" @click="btnclick();btnValue_beginB()">どちらでもない</button>
+                <button class="question__content--btn btnc" @click="btnclick();btnValue_beginC()">いいえ</button>
+            </div>
+            <!-- 選択肢 初級編 -->
+
+            <div v-if="leader" class="question__content" :class="{'question__content--leader': leader}">
+                <button :class="{'question__content--btnleader': leader}" class="question__content--btn btna" @click="btnclick();btnValue_leaderA()">{{questions_leader[0].q1}}</button>
+                <button :class="{'question__content--btnleader': leader}" class="question__content--btn btnb" @click="btnclick();btnValue_leaderB()">{{questions_leader[0].q2}}</button>
+                <button :class="{'question__content--btnleader': leader}" class="question__content--btn btnc" @click="btnclick();btnValue_leaderC()">{{questions_leader[0].q3}}</button>
+            </div>
+            <!-- 選択肢 上級編 -->
+
+
+
+
+            <div v-if="basic" class="question__gauge">
+                <img class="question__gauge--logo" src="images/communicationlogo.png" alt="logo" :style="{'left': gaugeWidth+'%'}" :class="{rotate: isRotatation}">
+                <div :style="{'width': gaugeWidth+'%'}"></div>
+            </div>
+            <!-- ゲージ 基礎編-->
+
+            <div v-if="begin" class="question__gauge">
+                <img class="question__gauge--logo" src="images/communicationlogo.png" alt="logo" :style="{'left': gaugeWidth_begin+'%'}" :class="{rotate: isRotatation}">
+                <div :style="{'width': gaugeWidth_begin+'%'}"></div>
+            </div>
+            <!-- ゲージ 初級編-->
+
+            <div v-if="leader" class="question__gauge">
+                <img class="question__gauge--logo" src="images/communicationlogo.png" alt="logo" :style="{'left': gaugeWidth_leader+'%'}" :class="{rotate: isRotatation}">
+                <div :style="{'width': gaugeWidth_leader+'%'}"></div>
+            </div>
+            <!-- ゲージ 上級編-->
+
+
+            <p v-if="basic" class="question__count">残り {{questions.length}} 問</p>
+            <!-- 残り問題数　基礎編 -->
+            <p v-if="basic && questions.length < 12" class="question__count__button" @click="basicBack">＜ 戻る</p>
+            <!-- 戻るボタン　基礎編 -->
+
+
+            <p v-if="begin" class="question__count">残り {{questions_begin.length}} 問</p>
+            <!-- 残り問題数　初級編 -->
+            <p v-if="begin && questions_begin.length < 12" class="question__count__button" @click="beginBack">＜ 戻る</p>
+            <!-- 戻るボタン　初級編 -->
+
+            <p v-if="leader" class="question__count">残り {{questions_leader.length}} 問</p>
+            <!-- 残り問題数　上級編 -->
+            <p v-if="leader && questions_leader.length < 12" class="question__count__button leader_button" @click="leaderBack">＜ 戻る</p>
+            <!-- 戻るボタン　上級編 -->
+        </div>
+        <!-- 質問のdiv -->
+
+
+        <div class="question answer" v-if="!questions.length || !questions_begin.length || !questions_leader.length">
+
+            <div v-if="resultScore">
+                <h1 class="question__title answer__title"><span v-if="basic">新卒社会人編</span><span v-if="begin">一般社会人編</span><span v-if="leader">リーダー役編</span>コミュニケーション能力診断結果</h1>
+
+                <p class="answer__score">点数　<span>{{this.score}}/100</span></p>
+
+                <p class="question__gauge--title">聞く力:<span>{{this.score_h}}/25</span></p>
+                <div class="question__gauge question__gauge--answer">
+                    <img class="question__gauge--logo">
+                    <div :style="{'width': score_h*4+'%'}"></div>
+                </div>
+                <p class="question__gauge--title">説明力:<span>{{this.score_d}}/25</span></p>
+                <div class="question__gauge question__gauge--answer">
+                    <img class="question__gauge--logo">
+                    <div :style="{'width': score_d*4+'%'}"></div>
+                </div>
+                <p class="question__gauge--title">質問力:<span>{{this.score_q}}/25</span></p>
+                <div class="question__gauge question__gauge--answer">
+                    <img class="question__gauge--logo">
+                    <div :style="{'width': score_q*4+'%'}"></div>
+                </div>
+                <p class="question__gauge--title">協調力:<span>{{this.score_c}}/25</span></p>
+                <div class="question__gauge question__gauge--answer">
+                    <img class="question__gauge--logo">
+                    <div :style="{'width': score_c*4+'%'}"></div>
+                </div>
+                <hr>
+                <div class="answer__bottom">
+                    <p>診断お疲れ様です、<br class="spdn">あなたの<strong>コミュニケーション段階</strong>を確認しましょう！</p>
+                    <button @click="resultClick">分析結果</button>
+                </div>
+            </div>
+            <!-- ゲーム結果div -->
+
+
+            <div v-if="result && !issushitype && !isanswerhistory">
+                <h1 class="question__title answer__title"><span v-if="basic">新卒社会人編</span><span v-if="begin">一般社会人編</span><span v-if="leader">リーダー役編</span>コミュニケーション能力診断結果</h1>
+
+                <p class="answer__score">あなたは <br class="pcdn">
+                    <span v-if="this.score > 80">{{this.sushitype[0]}}</span>
+                    <span v-else-if="this.score > 70">{{this.sushitype[1]}}</span>
+                    <span v-else-if="this.score > 50">{{this.sushitype[2]}}</span>
+                    <span v-else>{{this.sushitype[3]}}</span> 段階にいます
+                </p>
+
+                <div>
+                    <div v-if="this.score > 80" class="sushiimage mb-1">
+                        <img class="sushiimage__image sushiimage__image--big" src="images/level4.jpg" alt="level4">
+                        <!-- <img class="sushiimage__image" src="images/ootoro.png" alt="大トロ"> -->
+                    </div>
+
+                    <div v-else-if="this.score > 70" class="sushiimage mb-1">
+                        <img class="sushiimage__image sushiimage__image--big" src="images/level3.jpg" alt="level3">
+                        <!-- <img class="sushiimage__image" src="images/salmon.png" alt="サーモン"> -->
+                    </div>
+
+                    <div v-else-if="this.score > 50" class="sushiimage mb-1">
+                        <img class="sushiimage__image sushiimage__image--big" src="images/level2.jpg" alt="level2">
+                        <!-- <img class="sushiimage__image" src="images/tuna.png" alt="マグロ"> -->
+                    </div>
+
+                    <div v-else class="sushiimage mb-1">
+                        <img class="sushiimage__image sushiimage__image--big" src="images/level1.jpg" alt="level1">
+                        <!-- <img class="sushiimage__image" src="images/eggsushi.png" alt="玉子"> -->
+                    </div>
+
+                    <p v-if="this.score > 80" class="answer__bottom sushitext mb-2">あなたのコミュニケーション能力が優秀です。<br class="spdn">俯瞰的な視点を持ってコミュニケーションを行う能力を身につけましょう。</p>
+                    <p v-else-if="this.score > 70" class="answer__bottom sushitext mb-2">信頼を築き、そして相手の言葉を聴き取れます。<br class="spdn">相手の理解に合わせて伝える能力を身につけていきましょう。</p>
+                    <p v-else-if="this.score > 50" class="answer__bottom sushitext mb-2">信頼関係があったがスムーズなコミュニケーションをできません。<br class="spdn">聴く能力を身につけて、相手の意思をより正確に受け取って行きましょう。</p>
+                    <p v-else class="answer__bottom sushitext mb-2">あなたはコミュニケーションのスタートラインにいます。<br class="spdn">まず初めに、樹木を支える根を張るように、相手との信頼を築きましょう。</p>
+
+                    <div class="sushibutton__warp">
+                        <button @click="allSushitype">全段階詳細一覧</button>
+                        <button @click="answerHistory">診断答え履歴</button>
+                    </div>
+                </div>
+
+                <hr>
+                <div v-if="this.score > 70" class="answer__bottom">
+                    <p>こんな優秀なあなたに、<br class="spdn">おすすめな講座はこちらです。</p>
+                    <div class="heart-button"><img class="heart-img" @click="toSeminar" src="images/seminarbox.png" alt=""></div>
+                </div>
+
+                <div v-else-if="this.score > 50" class="answer__bottom">
+                    <p>更に上を目指しましょう！<br class="spdn">おすすめな講座はこちらです。</p>
+                    <div class="heart-button"><img class="heart-img" @click="toSeminar" src="images/seminarbox.png" alt=""></div>
+                </div>
+
+                <div v-else class="answer__bottom">
+                    <p>また頑張りましょう！<br class="spdn">おすすめな講座はこちらです。</p>
+                    <div class="heart-button"><img class="heart-img" @click="toSeminar" src="images/seminarbox.png" alt=""></div>
+                </div>
+            </div>
+            <!-- ゲーム結果詳細分析div -->
+
+            <div v-if="isanswerhistory">
+                <h1 class="question__title answer__title"><span>質問の答え一覧</span>コミュニケーション能力診断結果</h1>
+
+                <p class="answer__score">点数　<span>{{this.score}}/100</span></p>
+
+                <p class="question__gauge--title">聞く力:<span>{{this.score_h}}/25</span></p>
+                <div class="question__gauge question__gauge--answer">
+                    <img class="question__gauge--logo">
+                    <div :style="{'width': score_h*4+'%'}"></div>
+                </div>
+                <p class="question__gauge--title">説明力:<span>{{this.score_d}}/25</span></p>
+                <div class="question__gauge question__gauge--answer">
+                    <img class="question__gauge--logo">
+                    <div :style="{'width': score_d*4+'%'}"></div>
+                </div>
+                <p class="question__gauge--title">質問力:<span>{{this.score_q}}/25</span></p>
+                <div class="question__gauge question__gauge--answer">
+                    <img class="question__gauge--logo">
+                    <div :style="{'width': score_q*4+'%'}"></div>
+                </div>
+                <p class="question__gauge--title">協調力:<span>{{this.score_c}}/25</span></p>
+                <div class="question__gauge question__gauge--answer">
+                    <img class="question__gauge--logo">
+                    <div :style="{'width': score_c*4+'%'}"></div>
+                </div>
+                <hr style="margin-top: 3rem;">
+
+                <div class="answerhistory" v-for="(item, i) in backup">
+                    <h3>{{i+1}}、{{backup[i].name}}</h3>
+                    <p>{{resultArray[i]}}</p>
+                </div>
+
+                <div class="sushibutton__warp">
+                    <button @click="backToResult">前のページに戻る</button>
+                </div>
+            </div>
+            <!-- 答え一覧 -->
+
+
+            <div v-if="issushitype">
+                <h1 class="question__title answer__title"><span>全段階詳細一覧</span>コミュニケーション能力診断結果</h1>
+
+
+                <div class="sushitype__image">
+                    <img class="sushiimage__image2" src="images/icon_level4.jpg" alt="level4">
+                    <p><span>相互理解の段階</span><br>互いの意思疎通をさらにスムーズにして、相互理解を深めていきます。この段階になると、コミュニケーションへのストレスもほぼなく、さらに信頼関係も強固になっていきます。</p>
+                </div>
+                <div class="sushitype__image">
+                    <img class="sushiimage__image2" src="images/icon_level3.jpg" alt="level3">
+                    <p><span>伝える段階</span><br>信頼を築く力、そして相手の言葉を聴き取る能力が身についた状態です。自分主体ではなく、相手に合わせてコミュニケーションを行うことがこのレベルでのポイントです。</p>
+                </div>
+                <div class="sushitype__image">
+                    <img class="sushiimage__image2" src="images/icon_level2.jpg" alt="level2">
+                    <p><span>傾聴の段階</span><br>信頼関係の土台が築かれたものの、スムーズなコミュニケーションをできません。聴く能力を身につけて、相手の意思をより正確に受け取ることがこのレベルでのポイントです。</p>
+                </div>
+                <div class="sushitype__image mb-3">
+                    <img class="sushiimage__image2" src="images/icon_level1.jpg" alt="level1">
+                    <p><span>信頼の段階</span><br>信頼関係の土台が築かれていないこの段階では、話を聴こう、理解しようより自分の言いたいことを話し、相手の話を選択的に受け取る。まずは相手との信頼を築くことこのレベルでのポイントです。</p>
+                </div>
+
+
+                <div class="sushibutton__warp">
+                    <button @click="backToResult">前のページに戻る</button>
+                </div>
+            </div>
+            <!-- 答え一覧 -->
+
+
+
+            <div v-if="seminar">
+
+                <h1 class="question__title final__title"><span>おすすめセミナー</span>コミュニケーション能力診断結果</h1>
+
+
+                <div v-if="this.score > 70" class="seminar__block">
+                    <div class="seminar__title-warp mb-2">
+                        <img src="images/course-title-master.png" alt="">
+                        <p class="seminar__title">NLPマスター<br class="spdn">プラクティショナー認定</p>
+                    </div>
+                    <div class="semilnar__content mb-1">あなたのコミュニケーション能力が優秀で、意思疎通は問題にならないでしょう。もしNLPの力でさらに活かせれば、より良い段階に行けるでしょう。そんなあなたにNLPマスタープラクティショナーをおすすめさせていただきます。</div>
+                    <div class="semilnar__content mb-1">NLPマスタープラクティショナー認定コースでは、上級レベルの内容にプラスして、<span class="bold">さらに上級のコミュニケーションスキルを</span>はじめ、当スクール独自のプログラムを学びます。</div>
+                    <div class="semilnar__content mb-2">※「NLPプラクティショナー認定コース」を修了していることが受講の条件となります。もしNLPプラクティショナーを受けていなければ、セット割引で両方受けるのがおすすめです。</div>
+
+                </div>
+
+                <div v-else-if="this.score > 50" class="seminar__block">
+                    <div class="seminar__title-warp mb-2">
+                        <img src="images/course-title-pra.png" alt="">
+                        <p class="seminar__title">NLP<br class="spdn">プラクティショナー認定</p>
+                    </div>
+                    <div class="semilnar__content mb-1">あなたのコミュニケーション能力が良かったです。更に上を目指せれば、意思疎通が問題にならなくなります。NLPプラクティショナー認定コースでNLPの基本を学ぶのがおすすめです。</div>
+                    <div class="semilnar__content">NLPプラクティショナー認定コースは、<span class="bold">人生をより豊かにしていくために、日常、人間関係、ビジネスにNLPを活用する</span>ことをテーマにセミナーを構成しています。</div>
+
+                </div>
+
+                <div v-else class="seminar__block">
+                    <div class="seminar__title-warp mb-2">
+                        <img src="images/course-title-hyper.png" alt="">
+                        <p class="seminar__title">NLPハイパー<br class="spdn">コミュニケーションセミナー</p>
+                    </div>
+                    <div class="semilnar__content mb-1">あなたにとって、コミュニケーションは難しいでしょう。未来のことを考えて、コミュニケーションを良くするのが一番いいことです。NLPハイパーコミュニケーションセミナーでNLPの力を試してください。</div>
+                    <div class="semilnar__content">NLPハイパーコミュニケーションセミナーは、NLPの入門セミナーとして、<span class="bold">「コミュニケーション能力向上」「目標達成にNLPを活かす」</span>という２つのテーマから、NLPの基礎～ビジネスでの応用ポイントを２日間をかけ集中して学びます。</div>
+
+                </div>
+
+                <div class="seminar__button-warp">
+                    <!-- <button class="seminar__button">関連記事</button> -->
+                    <button class="seminar__button" @click="isLMcontent">セミナー案内</button>
+                    <button class="sushibutton" @click="backToResult">前のページに戻る</button>
+                </div>
+
+                <div v-if="LMcontent">
+                    <hr>
+                    <img class="sushiall" src="images/sushiall.png" alt="寿司">
+
+                    <div class="sushiall__note mb-3">こちらはLife&Mind+の殿堂入りレベルの記事です。Life&Mind+は「NLP-JAPANラーニング・センター」「日本コミュニケーション能力認定協会」が共同で運営するメディアサイトで、一流なNLPコンテンツを掲示しています。</div>
+
+                    <div class="sushitext__bottom">
+                        <p class="mb-2"><span>『人生の質は、コミュニケーションの質で決まる』</span></p>
+                        <p>人と人とのコミュニケーションとは、突き詰めると<br class="spdn"><b><u>「人を理解すること」「人に（自分を）理解してもらうこと」</u></b>なのです。</p>
+                        <p>あなたが言いたいこと、考え方、あなたがどんな人物かを誰かにわかってもらうために、そして周囲の人が何を言いたいのか、どんな考えを持っているのか、どのような人物かを理解するためにコミュニケーションがあります。</p>
+                        <p>コミュニケーション能力の重要性がうたわれるのは、社会の中で人と関わる以上、お互いがその中でより生きやすく、あらゆる活動をスムーズにするために欠かせない能力だからなのです。</p>
+                        <p>そこで、NLPの力を導入して、コミュニケーション能力を上げましょうか！</p>
+                    </div>
+
+                    <div class="seminar__button-warp">
+                        <!-- <button class="seminar__button">関連記事</button> -->
+                        <button v-if="this.score > 70" class="seminar__button"><a href="https://www.nlpjapan.co.jp/basic-master.html">マスターセミナー</a></button>
+                        <button v-else-if="this.score > 50" class="seminar__button"><a href="https://www.nlpjapan.co.jp/basic-pra.html">プラセミナー</a></button>
+                        <button v-else class="seminar__button"><a href="https://www.nlpjapan.co.jp/basic-hyper.html">ハイパーセミナー</a></button>                    
+                    </div>
+
+                </div>
+                <!-- <div class="sushibutton__warp">
+                    <button @click="backToResult">前のページに戻る</button>
+                </div> -->
+
+            </div>
+            <!-- セミナー一覧 -->
+
+
+
+
+        </div>
+
+
+
+
+
+
+        <div class="question answer" v-if="this.cheat">
+            <h1 class="question__title answer__title"><span class="cheat__result">チートですが。。。</span>満点おめでとうございます！</h1>
+
+            <p class="answer__score">点数　<span>100/100</span></p>
+
+            <p class="question__gauge--title">聞く力:<span>25/25</span></p>
+            <div class="question__gauge question__gauge--answer">
+                <img class="question__gauge--logo">
+                <div :style="{'width': 100+'%'}"></div>
+            </div>
+            <p class="question__gauge--title">説明力:<span>25/25</span></p>
+            <div class="question__gauge question__gauge--answer">
+                <img class="question__gauge--logo">
+                <div :style="{'width': 100+'%'}"></div>
+            </div>
+            <p class="question__gauge--title">質問力:<span>25/25</span></p>
+            <div class="question__gauge question__gauge--answer">
+                <img class="question__gauge--logo">
+                <div :style="{'width': 100+'%'}"></div>
+            </div>
+            <p class="question__gauge--title">協調力:<span>25/25</span></p>
+            <div class="question__gauge question__gauge--answer">
+                <img class="question__gauge--logo">
+                <div :style="{'width': 100+'%'}"></div>
+            </div>
+            <hr>
+            <div class="answer__bottom">
+                <p>こんな優秀なあなたに、コミュニケーション認定講座はもうないです！<br>
+                    <span class="cheattext2">１級(70点以上)、準１級(50点以上)、２級(0点以上)、チート(案内なし)</span></p>
+            </div>
+        </div>
+        <!-- チート用 -->
+
+
+        <footer>
+            <longpress v-if="!start" ref="btn" class="cheatbtn" duration="2" :on-confirm="doCheat" pressing-text="{$rcounter} 秒後にチートします" action-text="チート中です・・・">Copyright © 2022 Hsu Ting-Wei <br class="pcdn"><span class="cheattext">(長押しでチート)</span></longpress>
+            <!-- チート用 -->
+        </footer>
+    </div>
+
+
+    <script>
+        const VueLongpress = window['VueLongpress'];
+
+        new Vue({
+
+            el: "#app",
+            components: {
+                longpress: VueLongpress,
+            },
+            // チート用
+
+            data: {
+                start: false,
+                isRotatation: false,
+
+                basic: true,
+                begin: false,
+                leader: false,
+                cheat: false,
+                // 基礎、初期、上級診断コントロール
+
+                startTitle: true,
+                firstPage: false,
+                howToChoose: false,
+                yourType: false,
+
+
+                result: false,
+                resultScore: true,
+                issushitype: false,
+                isanswerhistory: false,
+                seminar: false,
+                LMcontent: false,
+
+
+
+                score: 0,
+                // 総合得点
+                score_h: 0,
+                // 聞く力
+                score_d: 0,
+                // 説明力
+                score_q: 0,
+                // 質問力
+                score_c: 0,
+                // 協調力
+
+
+                selection: "",
+                resultArray: [],
+
+                backup: [],
+                backupscore: [],
+
+                sushitype: ["相互理解", "伝えられる", "傾聴できる", "信頼構築"],
+
+                // はい：a
+                // いいえ：b
+                // どちらでもない：c
+
+                questions: [{
+                        id: 1,
+                        name: `まったく知らない分野の話を聞くのは、
+                    正直苦手・・面倒だと感じる`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 2,
+                        name: `自分より年齢が上の人、
+                    下の人でもコミュニケーションがとれる方だ`,
+                        a: 9,
+                        b: 5,
+                        c: 2
+                    },
+                    {
+                        id: 3,
+                        name: `悩みごとの相談をよく持ちかけられる`,
+                        a: 8,
+                        b: 4,
+                        c: 1
+                    },
+                    {
+                        id: 4,
+                        name: `何かを伝えると、質問されたり確認されることが多い`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 5,
+                        name: `つまり？と聞き返されることが多き、
+                    伝えたいことがうまく伝わらないことがある`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 6,
+                        name: `会議やミーティングでまとめ役・
+                    司会、進行役を頼まれることが多い`,
+                        a: 9,
+                        b: 5,
+                        c: 2
+                    },
+                    {
+                        id: 7,
+                        name: `初対面の人とでも、話しを引き出すことが得意な方だ`,
+                        a: 8,
+                        b: 4,
+                        c: 1
+                    },
+                    {
+                        id: 8,
+                        name: `興味のない話題になると、
+                    話しが発展させられず気まずくなることがある`,
+                        a: 2,
+                        b: 5,
+                        c: 9
+                    },
+                    {
+                        id: 9,
+                        name: `こちらの質問に対して、
+                    相手からの答えのポイントがずれていることがよくある`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 10,
+                        name: `今まで付き合ったことのないタイプの人と、
+                    どう接して良いかわからない`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 11,
+                        name: `自分の主張が正しいと思ったら、
+                    徹底して説得・議論する方だ`,
+                        a: 2,
+                        b: 5,
+                        c: 9
+                    },
+                    {
+                        id: 12,
+                        name: `集団行動、チームプレーでは、
+                    いつも浮いてしまう、衝突してしまう`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                ],
+                // 基礎編の質問
+
+                questions_begin: [{
+                        id: 1,
+                        name: `後輩、同僚から相談を持ちかけられて
+                        「あなたに話して良かった」とよく言われる`,
+                        a: 9,
+                        b: 5,
+                        c: 2
+                    },
+                    {
+                        id: 2,
+                        name: `相手の話の途中で、自分の意見を切り出すことがある`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 3,
+                        name: `相手の話、上司の指示の要点を
+                        的確にまとめることができる`,
+                        a: 8,
+                        b: 4,
+                        c: 1
+                    },
+                    {
+                        id: 4,
+                        name: `後輩に仕事を教えても、なかなか覚えて貰えない`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 5,
+                        name: `電話やメールで依頼した仕事。
+                        上がってくる内容が的外れな場合が多い`,
+                        a: 2,
+                        b: 5,
+                        c: 9
+                    },
+                    {
+                        id: 6,
+                        name: `説明をする時に、比較的専門用語が多い`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 7,
+                        name: `上司の指示が理解できないが、
+                        どう質問すれば良いかわからない`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 8,
+                        name: `後輩がトラブルで慌てている。
+                        的確に状況を聞き出し解決に導くことができる`,
+                        a: 9,
+                        b: 5,
+                        c: 2
+                    },
+                    {
+                        id: 9,
+                        name: `知りたいことはそれじゃないんだけれど・・・
+                        思うことが多い`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 10,
+                        name: `極論は、リーダーさえ目標や進捗を把握していれば、
+                        プロジェクトは達成できる`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 11,
+                        name: `尊敬・信頼できないリーダーからの指示には従いたくない`,
+                        a: 1,
+                        b: 4,
+                        c: 8
+                    },
+                    {
+                        id: 12,
+                        name: `日頃から、同僚や後輩の仕草や表情、
+                        声のトーンの変化を気にかけている`,
+                        a: 9,
+                        b: 5,
+                        c: 2
+                    },
+                ],
+                // 初級編の質問
+
+                questions_leader: [{
+                        id: 1,
+                        name: `部下それぞれの強みや能力、携わりたい業務について`,
+                        q1: `定期的に把握する機会を設けている`,
+                        q2: `人によっては把握している`,
+                        q3: `どちらかと言えば把握していない`,
+                        a: 8,
+                        b: 1,
+                        c: 4
+                    },
+                    {
+                        id: 2,
+                        name: `会議の場での、部下からの発言や雰囲気は`,
+                        q1: `積極的に発言があり良い雰囲気である`,
+                        q2: `意見を求めると発言する`,
+                        q3: `どちらとも言えない、あるいは発言する人が偏る`,
+                        a: 8,
+                        b: 1,
+                        c: 4
+                    },
+                    {
+                        id: 3,
+                        name: `部下の細かな表情、言葉の変化に対して`,
+                        q1: `意識的に気にかけている`,
+                        q2: `意識していない`,
+                        q3: `どちらとも言えない`,
+                        a: 9,
+                        b: 2,
+                        c: 5
+                    },
+                    {
+                        id: 4,
+                        name: `部下の仕事や目標に対するモチベーションについて`,
+                        q1: `高めることができている`,
+                        q2: `全体的にモチベーションが低い`,
+                        q3: `ムラがある、人によって違う`,
+                        a: 8,
+                        b: 1,
+                        c: 4
+                    },
+                    {
+                        id: 5,
+                        name: `大事なプレゼンの日に、部下が大遅刻！`,
+                        q1: `まずは怒りの感情をぶつける`,
+                        q2: `遅刻を改善するように叱る`,
+                        q3: `何も言わないで気付かせる`,
+                        a: 1,
+                        b: 8,
+                        c: 4
+                    },
+                    {
+                        id: 6,
+                        name: `自分が忙しくて手が回らない時に、あなたの部下は`,
+                        q1: `何かできることがないかと聞いてくる`,
+                        q2: `指示を出せば動いてくれる`,
+                        q3: `自分も忙しいからと断る`,
+                        a: 9,
+                        b: 5,
+                        c: 1
+                    },
+                    {
+                        id: 7,
+                        name: `部下がミスをして落ち込み、
+                        効率が低下している。あなたが掛ける言葉の傾向は？`,
+                        q1: `「なぜできなかったのか？」と原因を追及する`,
+                        q2: `「どうしたらできる？」と尋ねる`,
+                        q3: `気分転換に飲みにつれていく`,
+                        a: 1,
+                        b: 8,
+                        c: 4
+                    },
+                    {
+                        id: 8,
+                        name: `何度言っても同じミスを繰り返す部下に対して`,
+                        q1: `同じことを根気よく言い続ける`,
+                        q2: `言うのをあきらめる`,
+                        q3: `何が原因かを話し合う`,
+                        a: 4,
+                        b: 1,
+                        c: 8
+                    },
+                    {
+                        id: 9,
+                        name: `問題が起きた時に、あなたの部下は`,
+                        q1: `クレームになるまで報告が上がってこない`,
+                        q2: `すぐに報告が来る`,
+                        q3: `どちらとも言えない`,
+                        a: 2,
+                        b: 9,
+                        c: 5
+                    },
+                    {
+                        id: 10,
+                        name: `普段、部下からの報告や相談を受ける時、
+                        面と向かって話しを聞いている`,
+                        q1: `意識してそうしている`,
+                        q2: `基本、メールなどでしか受けない`,
+                        q3: `パソコン、作業をしながら聞く`,
+                        a: 8,
+                        b: 1,
+                        c: 4
+                    },
+                    {
+                        id: 11,
+                        name: `忙しい時に後輩・部下から相談を持ちかけられる。
+                        あなたの対応は？`,
+                        q1: `今はそれどころではないと断る`,
+                        q2: `空気を読んで改めるように伝える`,
+                        q3: `今の状況を伝えて、後で話しを聞く時間を取ると約束する`,
+                        a: 4,
+                        b: 1,
+                        c: 8
+                    },
+                    {
+                        id: 12,
+                        name: `部下の趣味、プライベート、仕事以外の悩みを聞いたことがある`,
+                        q1: `持ちかけられれば聞くようにしている`,
+                        q2: `仕事には関係ないので聞かない`,
+                        q3: `積極的に聞き出している`,
+                        a: 9,
+                        b: 2,
+                        c: 5
+                    },
+                ],
+                // 上級編の質問
+
+
+            },
+            computed: {
+                gaugeWidth() {
+                    // return (this.questions[0].id - 1) * 100 / 11
+                    return (this.backup.length) * 100 / 11
+
+                },
+                // 橙色のゲージの進み
+
+                gaugeWidth_begin() {
+                    // return (this.questions_begin[0].id - 1) * 100 / 11
+                    return (this.backup.length) * 100 / 11
+                },
+                // 橙色のゲージの進み
+
+                gaugeWidth_leader() {
+                    // return (this.questions_leader[0].id - 1) * 100 / 11
+                    return (this.backup.length) * 100 / 11
+                }
+                // 橙色のゲージの進み
+
+
+            },
+            methods: {
+
+                gamestart: function () {
+                    this.start = true
+                    this.yourType = false
+                },
+                // ゲームスタート
+
+                toFirstPage: function () {
+                    this.startTitle = !this.startTitle
+                    this.firstPage = !this.startTitle
+                    scroll(0, 0)
+                },
+
+                toHowToChoose: function () {
+                    this.startTitle = false
+                    this.howToChoose = true
+                    scroll(0, 0)
+                },
+
+                toYourType: function () {
+                    this.howToChoose = false
+                    this.yourType = true
+                    scroll(0, 0)
+                },
+
+                toSeminar: function () {
+                    this.seminar = true
+                    this.result = false
+                    scroll(0, 0)
+                },
+
+                isLMcontent: function () {
+                    this.LMcontent = !this.LMcontent
+                },
+
+                btnclick: function () {
+                    this.isRotatation = true
+                    const countUp = () => {
+                        this.isRotatation = false;
+                    }
+                    setTimeout(countUp, 600);
+                },
+                // ロゴを回す
+
+                navi_basicbtn: function () {
+                    this.basic = true
+                    this.begin = false
+                    this.leader = false
+                },
+
+                navi_beginbtn: function () {
+                    this.basic = false
+                    this.begin = true
+                    this.leader = false
+                },
+
+                navi_leaderbtn: function () {
+                    this.basic = false
+                    this.begin = false
+                    this.leader = true
+                },
+                // ナビで難易度レベルを変わる
+
+
+                btnValueA: function () {
+
+                    this.selection = "はい"
+                    this.resultArray.push(this.selection)
+                    this.selection = ""
+
+                    this.backup.push(this.questions[0])
+                    this.backupscore.push(this.questions[0].a)
+
+                    this.score += this.questions[0].a
+                    if (this.questions.length > 9) {
+                        this.score_h += this.questions[0].a
+                    } else if (this.questions.length > 6) {
+                        this.score_d += this.questions[0].a
+                    } else if (this.questions.length > 3) {
+                        this.score_q += this.questions[0].a
+                    } else {
+                        this.score_c += this.questions[0].a
+                    }
+
+                    this.questions.shift()
+                },
+                btnValueB: function () {
+
+                    this.selection = "どちらでもない"
+                    this.resultArray.push(this.selection)
+                    this.selection = ""
+
+                    this.backup.push(this.questions[0])
+                    this.backupscore.push(this.questions[0].b)
+
+                    this.score += this.questions[0].b
+                    if (this.questions.length > 9) {
+                        this.score_h += this.questions[0].b
+                    } else if (this.questions.length > 6) {
+                        this.score_d += this.questions[0].b
+                    } else if (this.questions.length > 3) {
+                        this.score_q += this.questions[0].b
+                    } else {
+                        this.score_c += this.questions[0].b
+                    }
+                    this.questions.shift()
+                },
+                btnValueC: function () {
+
+                    this.selection = "いいえ"
+                    this.resultArray.push(this.selection)
+                    this.selection = ""
+
+                    this.backup.push(this.questions[0])
+                    this.backupscore.push(this.questions[0].c)
+
+                    this.score += this.questions[0].c
+                    if (this.questions.length > 9) {
+                        this.score_h += this.questions[0].c
+                    } else if (this.questions.length > 6) {
+                        this.score_d += this.questions[0].c
+                    } else if (this.questions.length > 3) {
+                        this.score_q += this.questions[0].c
+                    } else {
+                        this.score_c += this.questions[0].c
+                    }
+                    this.questions.shift()
+                },
+
+                basicBack: function () {
+                    this.questions.unshift(this.backup[this.backup.length - 1])
+                    this.backup.pop()
+                    this.resultArray.pop()
+
+                    this.score -= this.backupscore[this.backup.length]
+
+                    if (this.backup.length < 3) {
+                        this.score_h -= this.backupscore[this.backup.length]
+                    } else if (this.backup.length < 6) {
+                        this.score_d -= this.backupscore[this.backup.length]
+                    } else if (this.backup.length < 9) {
+                        this.score_q -= this.backupscore[this.backup.length]
+                    } else {
+                        this.score_c -= this.backupscore[this.backup.length]
+                    }
+
+                    this.backupscore.pop()
+                },
+                // 基礎編
+
+
+                btnValue_beginA: function () {
+
+                    this.selection = "はい"
+                    this.resultArray.push(this.selection)
+                    this.selection = ""
+
+                    this.backup.push(this.questions_begin[0])
+                    this.backupscore.push(this.questions_begin[0].a)
+
+                    this.score += this.questions_begin[0].a
+                    if (this.questions_begin.length > 9) {
+                        this.score_h += this.questions_begin[0].a
+                    } else if (this.questions_begin.length > 6) {
+                        this.score_d += this.questions_begin[0].a
+                    } else if (this.questions_begin.length > 3) {
+                        this.score_q += this.questions_begin[0].a
+                    } else {
+                        this.score_c += this.questions_begin[0].a
+                    }
+                    this.questions_begin.shift()
+                },
+                btnValue_beginB: function () {
+
+                    this.selection = "どちらでもない"
+                    this.resultArray.push(this.selection)
+                    this.selection = ""
+
+                    this.backup.push(this.questions_begin[0])
+                    this.backupscore.push(this.questions_begin[0].b)
+
+                    this.score += this.questions_begin[0].b
+                    if (this.questions_begin.length > 9) {
+                        this.score_h += this.questions_begin[0].b
+                    } else if (this.questions_begin.length > 6) {
+                        this.score_d += this.questions_begin[0].b
+                    } else if (this.questions_begin.length > 3) {
+                        this.score_q += this.questions_begin[0].b
+                    } else {
+                        this.score_c += this.questions_begin[0].b
+                    }
+                    this.questions_begin.shift()
+                },
+                btnValue_beginC: function () {
+
+                    this.selection = "いいえ"
+                    this.resultArray.push(this.selection)
+                    this.selection = ""
+
+                    this.backup.push(this.questions_begin[0])
+                    this.backupscore.push(this.questions_begin[0].c)
+
+                    this.score += this.questions_begin[0].c
+                    if (this.questions_begin.length > 9) {
+                        this.score_h += this.questions_begin[0].c
+                    } else if (this.questions_begin.length > 6) {
+                        this.score_d += this.questions_begin[0].c
+                    } else if (this.questions_begin.length > 3) {
+                        this.score_q += this.questions_begin[0].c
+                    } else {
+                        this.score_c += this.questions_begin[0].c
+                    }
+                    this.questions_begin.shift()
+                },
+
+                beginBack: function () {
+                    this.questions_begin.unshift(this.backup[this.backup.length - 1])
+                    this.backup.pop()
+                    this.resultArray.pop()
+
+                    this.score -= this.backupscore[this.backup.length]
+
+                    if (this.backup.length < 3) {
+                        this.score_h -= this.backupscore[this.backup.length]
+                    } else if (this.backup.length < 6) {
+                        this.score_d -= this.backupscore[this.backup.length]
+                    } else if (this.backup.length < 9) {
+                        this.score_q -= this.backupscore[this.backup.length]
+                    } else {
+                        this.score_c -= this.backupscore[this.backup.length]
+                    }
+
+                    this.backupscore.pop()
+                },
+                // 初級編
+
+
+                btnValue_leaderA: function () {
+
+                    this.selection = this.questions_leader[0].q1
+                    this.resultArray.push(this.selection)
+                    this.selection = ""
+
+                    this.backup.push(this.questions_leader[0])
+                    this.backupscore.push(this.questions_leader[0].a)
+
+                    this.score += this.questions_leader[0].a
+                    if (this.questions_leader.length > 9) {
+                        this.score_h += this.questions_leader[0].a
+                    } else if (this.questions_leader.length > 6) {
+                        this.score_d += this.questions_leader[0].a
+                    } else if (this.questions_leader.length > 3) {
+                        this.score_q += this.questions_leader[0].a
+                    } else {
+                        this.score_c += this.questions_leader[0].a
+                    }
+                    this.questions_leader.shift()
+                },
+                btnValue_leaderB: function () {
+
+                    this.selection = this.questions_leader[0].q2
+                    this.resultArray.push(this.selection)
+                    this.selection = ""
+
+                    this.backup.push(this.questions_leader[0])
+                    this.backupscore.push(this.questions_leader[0].b)
+
+                    this.score += this.questions_leader[0].b
+                    if (this.questions_leader.length > 9) {
+                        this.score_h += this.questions_leader[0].b
+                    } else if (this.questions_leader.length > 6) {
+                        this.score_d += this.questions_leader[0].b
+                    } else if (this.questions_leader.length > 3) {
+                        this.score_q += this.questions_leader[0].b
+                    } else {
+                        this.score_c += this.questions_leader[0].b
+                    }
+                    this.questions_leader.shift()
+                },
+                btnValue_leaderC: function () {
+
+                    this.selection = this.questions_leader[0].q3
+                    this.resultArray.push(this.selection)
+                    this.selection = ""
+
+                    this.backup.push(this.questions_leader[0])
+                    this.backupscore.push(this.questions_leader[0].c)
+
+                    this.score += this.questions_leader[0].c
+                    if (this.questions_leader.length > 9) {
+                        this.score_h += this.questions_leader[0].c
+                    } else if (this.questions_leader.length > 6) {
+                        this.score_d += this.questions_leader[0].c
+                    } else if (this.questions_leader.length > 3) {
+                        this.score_q += this.questions_leader[0].c
+                    } else {
+                        this.score_c += this.questions_leader[0].c
+                    }
+                    this.questions_leader.shift()
+                },
+
+                leaderBack: function () {
+                    this.questions_leader.unshift(this.backup[this.backup.length - 1])
+                    this.backup.pop()
+                    this.resultArray.pop()
+
+                    this.score -= this.backupscore[this.backup.length]
+
+                    if (this.backup.length < 3) {
+                        this.score_h -= this.backupscore[this.backup.length]
+                    } else if (this.backup.length < 6) {
+                        this.score_d -= this.backupscore[this.backup.length]
+                    } else if (this.backup.length < 9) {
+                        this.score_q -= this.backupscore[this.backup.length]
+                    } else {
+                        this.score_c -= this.backupscore[this.backup.length]
+                    }
+
+                    this.backupscore.pop()
+                },
+                // 上級編
+
+                resultClick: function () {
+                    this.resultScore = false
+                    this.result = true
+                    scroll(0, 0)
+
+                },
+
+                allSushitype: function () {
+                    this.issushitype = true
+                    scroll(0, 0)
+                },
+                answerHistory: function () {
+                    this.isanswerhistory = true
+                    scroll(0, 0)
+                },
+                backToResult: function () {
+                    this.issushitype = false
+                    this.isanswerhistory = false
+                    this.seminar = false
+                    this.result = true
+                    scroll(0, 0)
+                },
+
+
+                doCheat() {
+                    // this.$destroy();
+                    // this.$el.parentNode.removeChild(this.$el);
+                    this.cheat = true,
+                        this.start = true,
+                        this.basic = false
+                    this.firstPage = false
+                    this.howToChoose = false
+                    this.yourType = false
+                }
+                // チート用
+            }
+
+
+
+        })
+    </script>
+
+</body>
+
+</html>
